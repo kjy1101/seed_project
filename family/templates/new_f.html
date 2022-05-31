@@ -4,14 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>New - Family</title>
 </head>
 <body>
-    <h1>New - Family</h1>
-    <form action="" method="POST">
+    <h1 style="text-align:center">New - Family</h1>
+    <form action="" method="POST" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
-        {{form.as_table}}
-        <input type="submit" value="생성">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">한글 이름</span>
+            {{form.family_ko}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">영문 이름</span>
+            {{form.family_en}}
+        </div>
+        <input type="submit" value="생성" style="float:right;" class="btn btn-primary">
     </form>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </body>
 </html>

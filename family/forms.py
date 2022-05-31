@@ -6,3 +6,13 @@ class FamilyForm(forms.ModelForm):
     class Meta:
         model = Family
         fields = ['family_ko', 'family_en']
+        widgets = {
+            'family_ko': forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "ex)"
+            }),
+            'family_en': forms.TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "ex)"
+            })
+        }
