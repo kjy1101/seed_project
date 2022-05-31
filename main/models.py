@@ -5,11 +5,12 @@ from django.db import models
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, organization, login_id, email, password, **kwargs):
+    def create_user(self, name, organization, login_id, email, password, **kwargs):
         if not email:
             raise ValueError(_('Users must have an email address'))
 
         user = self.model(
+            name=name,
             organization=organization,
             login_id=login_id,
             email=email,

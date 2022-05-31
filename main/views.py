@@ -18,23 +18,22 @@ def home(request):
 
 def signup(request):
     if request.method == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
-            user = User.objects.create_user(
-                                            organization=request.POST['organization'],
-                                            login_id=request.POST['login_id'],
-                                            password=request.POST['password1'],
-                                            email=request.POST['email'],)
-            auth.login(request, user)
-            return redirect('login')
-        return render(request, 'signup.html')
+        user = User.objects.create_user(
+                                        organization=request.POST['organization'],
+                                        login_id=request.POST['login_id'],
+                                        password=request.POST['password'],
+                                        email=request.POST['email'],
+                                        name=request.POST['name']
+        )
+        return redirect('login')
     return render(request, 'signup.html')
 
 # 로그인
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        login_id = request.POST['login_id']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, login_id=login_id, password=password)
         if user is not None:
             auth.login(request, user)
             print(request.user)
