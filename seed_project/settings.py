@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'seed',
     'family',
     'genus',
-    'bootstrap4',
 ]
 
 MIDDLEWARE = [
