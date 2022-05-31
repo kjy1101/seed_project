@@ -6,7 +6,7 @@ from .models import Seed
 class SeedForm(forms.ModelForm):
     class Meta:
         model = Seed
-        fields = ['intro_num', 'family', 'genus', 'used_scientific_name', 'plant_name', 'microscope', 'seed_length', 'seed_length_error', 'seed_width', 'seed_width_error', 'note']
+        fields = ['intro_num', 'family', 'genus', 'used_scientific_name', 'plant_name', 'microscope', 'seed_length', 'seed_length_error', 'seed_width', 'seed_width_error', 'note', 'user']
         widgets = {
             'intro_num' : forms.TextInput(attrs={
                 "class" : "form-control",

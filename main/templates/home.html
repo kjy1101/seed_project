@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Home</h1>
+{% extends "base.html" %}
+{% block content %}
 
-    <div>
+    <!-- <div>
     <h3><a href="signup">회원가입</a></h3>
     <h3><a href="login">로그인</a></h3>
     <h3><a href="logout">로그아웃</a></h3>
@@ -19,31 +11,88 @@
         <a href="/seed/new">종자생성</a>
         <a href="/family/new">과명생성</a>
         <a href="/genus/new">속명생성</a>
+    </div> -->
+
+    <h3 style="text-align:center;">Seed</h3>
+    <div style="display:flex;justify-content:center;">
+        <table class="table table-hover" style="width:90%;">
+            <thead>
+                <tr>
+                <th scope="col">도입번호</th>
+                <th scope="col">과명</th>
+                <th scope="col">속명</th>
+                <th scope="col">도입학명</th>
+                <th scope="col">국명</th>
+                <th scope="col">현미경</th>
+                <th scope="col">종자길이(mm)</th>
+                <th scope="col">종자너비(mm)</th>
+                <th scope="col">비고</th>
+                <th scope="col">상세보기</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in seed_list %}
+                    <tr>
+                        <td>{{s.intro_num}}</td>
+                        <td>{{s.family}}</td>
+                        <td>{{s.genus}}</td>
+                        <td>{{s.used_scientific_name}}</td>
+                        <td>{{s.plant_name}}</td>
+                        <td>{{s.microscope}}</td>
+                        <td>{{s.seed_length}}±{{s.seed_length_error}}</td>
+                        <td>{{s.seed_width}}±{{s.seed_width_error}}</td>
+                        <td>{{s.note}}</td>
+                        <td><a href="seed/detail/{{s.id}}">상세</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
-    <h3>Seed</h3>
-    {% for s in seed_list %}
-        <div>
-            {{s.plant_name}}
-            <a href="/seed/detail/{{s.id}}">상세</a>
-        </div>
-    {% endfor %}
 
-    <h3>Family</h3>
-    {% for f in family_list %}
-        <div>
-            {{f}}
-            <a href="/family/detail/{{f.id}}">상세</a>
+    <div style="display: flex;flex-wrap: wrap;justify-content: space-around;align-content: space-around;">
+        <div style="width:45%;">
+            <h3 style="text-align:center;">Family</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">과명</th>
+                    <th scope="col">과국명</th>
+                    <th scope="col">상세보기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in family_list %}
+                        <tr>
+                            <td>{{f.family_en}}</td>
+                            <td>{{f.family_ko}}</td>
+                            <td><a href="/family/detail/{{f.id}}">상세</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endfor %}
-
-    <h3>Genus</h3>
-    {% for g in genus_list %}
-        <div>
-            {{g}}
-            <a href="/genus/detail/{{g.id}}">상세</a>
+        <div style="width:45%;">
+            <h3 style="text-align:center;">Genus</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">속명</th>
+                    <th scope="col">속국명</th>
+                    <th scope="col">상세보기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for g in genus_list %}
+                        <tr>
+                            <td>{{g.genus_en}}</td>
+                            <td>{{g.genus_ko}}</td>
+                            <td><a href="/genus/detail/{{g.id}}">상세</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    {% endfor %}
+    </div>
 
-</body>
-</html>
+{% endblock content %}

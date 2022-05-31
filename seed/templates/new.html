@@ -9,7 +9,7 @@
     <title>New - Seed</title>
 </head>
 <body>
-    <h1 style="text-align:center">New - Seed</h1>
+    <h1 style="text-align:center">새로운 씨앗 생성</h1>
     <form action="" method="POST" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
         <div class="input-group mb-3">
@@ -55,6 +55,10 @@
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">비고</span>
             {{form.note}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">생성자</span>
+            {{form.user}}
         </div>
         <input type="submit" value="생성" style="float:right;" class="btn btn-primary">
     </form>
