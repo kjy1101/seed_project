@@ -4,14 +4,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>New - Seed</title>
 </head>
 <body>
-    <h1>New - Seed</h1>
-    <form action="" method="POST">
+    <h1 style="text-align:center">New - Seed</h1>
+    <form action="" method="POST" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
-        {{form.as_table}}
-        <input type="submit" value="생성">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">도입번호</span>
+            {{form.intro_num}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">과명</span>
+            {{form.family}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">속명</span>
+            {{form.genus}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">도입학명</span>
+            {{form.used_scientific_name}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">국명</span>
+            {{form.plant_name}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">현미경</span>
+            {{form.microscope}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">종자길이(mm)</span>
+            {{form.seed_length}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">종자길이오차(mm)</span>
+            {{form.seed_length_error}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">종자너비(mm)</span>
+            {{form.seed_width}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">종자너비오차(mm)</span>
+            {{form.seed_width_error}}
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">비고</span>
+            {{form.note}}
+        </div>
+        <input type="submit" value="생성" style="float:right;" class="btn btn-primary">
     </form>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
