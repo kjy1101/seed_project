@@ -9,10 +9,10 @@
     <title>Home</title>
 </head>
 <body>
-
+{% csrf_token %}
 <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" style="color:white">Seed</a>
+      <a class="navbar-brand" href="/" style="color:white">Seed</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,15 +27,18 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/genus/new" style="color:white">속명생성</a>
           </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="logout" style="color:white">로그아웃</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="signup" style="color:white">회원가입</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="login" style="color:white">로그인</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="logout" style="color:white">로그아웃</a>
-          </li>
+          {% endif %}
         </ul>
       </div>
     </div>

@@ -25,12 +25,14 @@ def signup(request):
                                         email=request.POST['email'],
                                         name=request.POST['name']
         )
-        return redirect('login')
+        auth.login(request, user)
+        return redirect('home')
     return render(request, 'signup.html')
 
 # 로그인
 def login(request):
     if request.method == 'POST':
+        print(request.user)
         login_id = request.POST['login_id']
         password = request.POST['password']
         user = authenticate(request, login_id=login_id, password=password)

@@ -5,13 +5,16 @@ from .forms import SeedForm
 
 def new(request):
     if request.method == 'POST': # POST 요청일때 새로운 seed 저장
-        form = SeedForm(request.POST, request.FILES)
-        if form.is_valid():
-            seed = form.save(commit=False)
-            seed.save()
-            return redirect('home') # seed 생성 후 home 페이지로 리다이렉트
+        if request.user.is_authenticated:
+            form = SeedForm(request.POST, request.FILES)
+            if form.is_valid():
+                seed = form.save(commit=False)
+                seed.save()
+                return redirect('home') # seed 생성 후 home 페이지로 리다이렉트
+            else:
+                print("form is invalid")
         else:
-            print("form is invalid")
+            return render(request, 'new.html', {'error': 'login first'})
 
     else: # GET 요청일때 폼 작성
         form = SeedForm()
