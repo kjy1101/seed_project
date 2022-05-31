@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home</h1>
+
+    <div>
+        <a href="/seed/new">종자생성</a>
+        <a href="/family/new">과명생성</a>
+        <a href="/genus/new">속명생성</a>
+    </div>
+
+    <h3>Seed</h3>
+    {% for s in seed_list %}
+        <div>
+            {{s.plant_name}}
+            <a href="/seed/detail/{{s.id}}">상세</a>
+        </div>
+    {% endfor %}
+
+    <h3>Family</h3>
+    {% for f in family_list %}
+        <div>
+            {{f}}
+            <a href="/family/detail/{{f.id}}">상세</a>
+        </div>
+    {% endfor %}
+
+    <h3>Genus</h3>
+    {% for g in genus_list %}
+        <div>
+            {{g}}
+            <a href="/genus/detail/{{g.id}}">상세</a>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
