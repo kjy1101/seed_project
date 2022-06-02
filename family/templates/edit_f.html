@@ -2,6 +2,7 @@
 {% block content %}
 
     <h1 style="text-align:center; margin: 20px auto;"><b>{{family.family_ko}}({{family.family_en}})</b> 수정</h1>
+
     <form action="" method="POST" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
         <div class="form-floating mb-3">

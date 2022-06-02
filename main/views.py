@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.contrib.auth import authenticate
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from main.models import User
@@ -29,6 +30,7 @@ def signup(request):
         return redirect('home')
     return render(request, 'signup.html')
 
+
 # 로그인
 def login(request):
     if request.method == 'POST':
@@ -51,3 +53,34 @@ def logout(request):
     print(request.user)
     auth.logout(request)
     return redirect('login')
+
+def search(request):
+    if request.method == 'POST': # POST 요청일때 새로운 family 저장
+        if request.user.is_authenticated:
+            intro_num = request.POST.get('intro_num')
+            family_en = request.POST.get('family_en')
+            family_ko = request.POST.get('family_ko')
+            genus_en = request.POST.get('genus_en')
+            genus_ko = request.POST.get('genus_ko')
+            used_scientific_name = request.POST.get('used_scientific_name')
+            plant_name = request.POST.get('plant_name')
+            q = Q()
+            if intro_num is not '':
+                q &= Q(intro_num=intro_num)
+            if family_en is not '':
+                q &= Q(family__family_en=family_en)
+            if family_ko is not '':
+                q &= Q(family__family_ko=family_ko)
+            if genus_en is not '':
+                q &= Q(genus__genus_en=genus_en)
+            if genus_ko is not '':
+                q &= Q(genus__genus_ko=genus_ko)
+            if used_scientific_name is not '':
+                q &= Q(used_scientific_name=used_scientific_name)
+            if plant_name is not '':
+                q &= Q(plant_name=plant_name)
+            q &= Q(user=request.user)
+            seeds = Seed.objects.filter(q)
+            return render(request, 'result.html', {'seed_list':seeds,})
+    else:
+        return render(request, 'search.html')
