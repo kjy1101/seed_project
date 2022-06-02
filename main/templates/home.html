@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 {% for s in seed_list %}
-                    <tr onclick="location.href='../seed/detail/{{s.id}}'" style="cursor:pointer;">
+                    <tr onclick="location.href='seed/detail/{{s.id}}'" style="cursor:pointer;">
                         <td>{{s.intro_num}}</td>
                         <td>{{s.family}}</td>
                         <td>{{s.genus}}</td>
@@ -53,7 +53,7 @@
                 </thead>
                 <tbody>
                     {% for f in family_list %}
-                        <tr onclick="location.href='../family/detail/{{f.id}}'" style="cursor:pointer;">
+                        <tr onclick="location.href='family/detail/{{f.id}}'" style="cursor:pointer;">
                             <td>{{f.family_en}}</td>
                             <td>{{f.family_ko}}</td>
                             <td>{{f.user.name}}</td>
@@ -74,7 +74,7 @@
                 </thead>
                 <tbody>
                     {% for g in genus_list %}
-                        <tr onclick="location.href='../genus/detail/{{g.id}}'" style="cursor:pointer;">
+                        <tr onclick="location.href='genus/detail/{{g.id}}'" style="cursor:pointer;">
                             <td>{{g.genus_en}}</td>
                             <td>{{g.genus_ko}}</td>
                             <td>{{g.user.name}}</td>
