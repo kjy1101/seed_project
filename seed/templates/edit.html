@@ -1,70 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <title>Edit - Seed</title>
-</head>
-<body>
-    <h1 style="text-align:center"><b>{{seed.plant_name}}({{seed.used_scientific_name}})</b> 수정</h1>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 style="text-align:center; margin: 20px auto;"><b>{{seed.plant_name}}({{seed.used_scientific_name}})</b> 수정</h1>
     <form action="" method="POST" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">도입번호</span>
+        <div class="form-floating mb-3">
             {{form.intro_num}}
+            <label for="floatingInput">도입번호</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">과명</span>
+        <div class="form-floating" style="margin: 15px auto;">
             {{form.family}}
+            <label for="floatingSelect">과명</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">속명</span>
+        <div class="form-floating" style="margin: 15px auto;">
             {{form.genus}}
+            <label for="floatingSelect">속명</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">도입학명</span>
+        <div class="form-floating mb-3">
             {{form.used_scientific_name}}
+            <label for="floatingInput">도입학명</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">국명</span>
+        <div class="form-floating mb-3">
             {{form.plant_name}}
+            <label for="floatingInput">국명</label>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">현미경</span>
             {{form.microscope}}
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">종자길이(mm)</span>
+        <div class="form-floating mb-3">
             {{form.seed_length}}
+            <label for="floatingInput">종자길이(mm)</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">종자길이오차(mm)</span>
+        <div class="form-floating mb-3">
             {{form.seed_length_error}}
+            <label for="floatingInput">종자길이오차(mm)</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">종자너비(mm)</span>
+        <div class="form-floating mb-3">
             {{form.seed_width}}
+            <label for="floatingInput">종자너비(mm)</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">종자너비오차(mm)</span>
+        <div class="form-floating mb-3">
             {{form.seed_width_error}}
+            <label for="floatingInput">종자너비오차(mm)</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">비고</span>
+        <div class="form-floating">
             {{form.note}}
+            <label for="floatingTextarea">비고</label>
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">생성자</span>
+        <div class="form-floating" style="margin: 15px auto;">
             {{form.user}}
+            <label for="floatingSelect">생성자</label>
         </div>
         <input type="submit" value="수정" style="float:right;" class="btn btn-primary">
     </form>
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-</body>
-</html>
+{% endblock content %}

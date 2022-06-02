@@ -12,6 +12,12 @@ class SeedForm(forms.ModelForm):
                 "class" : "form-control",
                 "placeholder" : "ex) 2020-001492"
             }),
+            'family' : forms.Select(attrs={
+                "class" : "form-select"
+            }),
+            'genus' : forms.Select(attrs={
+                "class" : "form-select"
+            }),
             'used_scientific_name' : forms.TextInput(attrs={
                 "class" : "form-control",
                 "placeholder" : "ex) Aster maackii Regel"
@@ -43,5 +49,8 @@ class SeedForm(forms.ModelForm):
             'note' : forms.Textarea(attrs={
                 "class" : "form-control",
                 "placeholder" : "ex) 1차"
+            }),
+            'user' : forms.Select(attrs={
+                "class" : "form-select"
             })
         }
