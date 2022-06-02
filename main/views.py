@@ -55,7 +55,7 @@ def logout(request):
     return redirect('login')
 
 def search(request):
-    if request.method == 'POST': # POST 요청일때 새로운 family 저장
+    if request.method == 'POST':
         if request.user.is_authenticated:
             intro_num = request.POST.get('intro_num')
             family_en = request.POST.get('family_en')

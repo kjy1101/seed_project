@@ -11,6 +11,7 @@
                 <th scope="col">속명</th>
                 <th scope="col">도입학명</th>
                 <th scope="col">국명</th>
+                <th scope="col">단/복립</th>
                 <th scope="col">현미경</th>
                 <th scope="col">종자길이(mm)</th>
                 <th scope="col">종자너비(mm)</th>
@@ -25,6 +26,7 @@
                         <td>{{s.genus}}</td>
                         <td>{{s.used_scientific_name}}</td>
                         <td>{{s.plant_name}}</td>
+                        <td>{{s.get_grain_display}}</td>
                         <td>{{s.microscope}}</td>
                         <td>{{s.seed_length}}±{{s.seed_length_error}}</td>
                         <td>{{s.seed_width}}±{{s.seed_width_error}}</td>
