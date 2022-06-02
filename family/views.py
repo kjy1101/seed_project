@@ -11,7 +11,7 @@ def new(request):
                 family = form.save(commit=False)
                 family.user = request.user
                 family.save()
-                return redirect('home') # family 생성 후 home 페이지로 리다이렉트
+                return redirect('/home') # family 생성 후 home 페이지로 리다이렉트
             else:
                 print("form is invalid")
         else:

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <h1 style="text-align: center;margin: 20px;">검색</h1>
+
+    <form action="" method="POST" style="width:60%;margin:0 auto;">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="intro_num" id="floatingInput" placeholder="ex) 2020-001492">
+            <label for="floatingInput">도입번호</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="family_en" id="floatingInput" placeholder="ex) Compositae">
+            <label for="floatingInput">과명(영문)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="family_ko" id="floatingInput" placeholder="ex) 국화과">
+            <label for="floatingInput">과국명(국문)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="genus_en" id="floatingInput" placeholder="ex) Aster">
+            <label for="floatingInput">속명(영문)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="genus_ko" id="floatingInput" placeholder="ex) 참취속">
+            <label for="floatingInput">속국명(국문)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="used_scientific_name" id="floatingInput" placeholder="ex) Aster maackii Regel">
+            <label for="floatingInput">도입학명(영문)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="plant_name" id="floatingInput" placeholder="ex) 좀개미취">
+            <label for="floatingInput">국명(국문)</label>
+        </div>
+
+        <input type="submit" value="검색" style="float:right;" class="btn btn-primary">
+
+    </form>
+
+{% endblock content %}
