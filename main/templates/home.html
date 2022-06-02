@@ -11,6 +11,7 @@
                 <th scope="col">속명</th>
                 <th scope="col">도입학명</th>
                 <th scope="col">국명</th>
+                <th scope="col">단/복립</th>
                 <th scope="col">현미경</th>
                 <th scope="col">종자길이(mm)</th>
                 <th scope="col">종자너비(mm)</th>
@@ -20,12 +21,13 @@
             </thead>
             <tbody>
                 {% for s in seed_list %}
-                    <tr onclick="location.href='../seed/detail/{{s.id}}'" style="cursor:pointer;">
+                    <tr onclick="location.href='seed/detail/{{s.id}}'" style="cursor:pointer;">
                         <td>{{s.intro_num}}</td>
                         <td>{{s.family}}</td>
                         <td>{{s.genus}}</td>
                         <td>{{s.used_scientific_name}}</td>
                         <td>{{s.plant_name}}</td>
+                        <td>{{s.get_grain_display}}</td>
                         <td>{{s.microscope}}</td>
                         <td>{{s.seed_length}}±{{s.seed_length_error}}</td>
                         <td>{{s.seed_width}}±{{s.seed_width_error}}</td>
@@ -51,7 +53,7 @@
                 </thead>
                 <tbody>
                     {% for f in family_list %}
-                        <tr onclick="location.href='../family/detail/{{f.id}}'" style="cursor:pointer;">
+                        <tr onclick="location.href='family/detail/{{f.id}}'" style="cursor:pointer;">
                             <td>{{f.family_en}}</td>
                             <td>{{f.family_ko}}</td>
                             <td>{{f.user.name}}</td>
@@ -72,7 +74,7 @@
                 </thead>
                 <tbody>
                     {% for g in genus_list %}
-                        <tr onclick="location.href='../genus/detail/{{g.id}}'" style="cursor:pointer;">
+                        <tr onclick="location.href='genus/detail/{{g.id}}'" style="cursor:pointer;">
                             <td>{{g.genus_en}}</td>
                             <td>{{g.genus_ko}}</td>
                             <td>{{g.user.name}}</td>

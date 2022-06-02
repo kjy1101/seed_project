@@ -24,6 +24,10 @@
             {{form.plant_name}}
             <label for="floatingInput">국명</label>
         </div>
+        <div class="form-floating" style="margin: 15px auto;">
+            {{form.grain}}
+            <label for="floatingSelect">단립/복립</label>
+        </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">현미경</span>
             {{form.microscope}}
@@ -47,10 +51,6 @@
         <div class="form-floating">
             {{form.note}}
             <label for="floatingTextarea">비고</label>
-        </div>
-        <div class="form-floating" style="margin: 15px auto;">
-            {{form.user}}
-            <label for="floatingSelect">생성자</label>
         </div>
 
         <div class="mb-3">
