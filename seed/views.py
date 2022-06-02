@@ -35,6 +35,7 @@ def new(request):
 def detail(request, pk):
     if request.user.is_authenticated:
         seed = get_object_or_404(Seed, pk=pk)
+        print(seed.grain)
         return render(request, 'detail.html', {'seed': seed})
 
 
