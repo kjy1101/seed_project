@@ -2,7 +2,7 @@
 {% block content %}
 
     <h1 style="text-align:center; margin: 20px auto;">새로운 씨앗 생성</h1>
-    <form action="" method="POST" style="width:60%; margin: 0 auto;">
+    <form action="" method="POST" enctype="multipart/form-data" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
         <div class="form-floating mb-3">
             {{form.intro_num}}
@@ -52,6 +52,12 @@
             {{form.user}}
             <label for="floatingSelect">생성자</label>
         </div>
+
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">종자 이미지</label>
+            <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
+        </div>
+
         <input type="submit" value="생성" style="float:right;" class="btn btn-primary">
     </form>
 

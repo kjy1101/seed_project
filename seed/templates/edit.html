@@ -2,7 +2,7 @@
 {% block content %}
 
     <h1 style="text-align:center; margin: 20px auto;"><b>{{seed.plant_name}}({{seed.used_scientific_name}})</b> 수정</h1>
-    <form action="" method="POST" style="width:60%; margin: 0 auto;">
+    <form action="" method="POST" enctype="multipart/form-data" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
         <div class="form-floating mb-3">
             {{form.intro_num}}
@@ -52,6 +52,12 @@
             {{form.user}}
             <label for="floatingSelect">생성자</label>
         </div>
+
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">종자 이미지</label>
+            <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
+        </div>
+        
         <input type="submit" value="수정" style="float:right;" class="btn btn-primary">
     </form>
 
