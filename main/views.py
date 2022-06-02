@@ -65,21 +65,21 @@ def search(request):
             used_scientific_name = request.POST.get('used_scientific_name')
             plant_name = request.POST.get('plant_name')
             q = Q()
-            if intro_num is not '':
+
+            if intro_num != '':
                 q &= Q(intro_num__icontains=intro_num)
-            if family_en is not '':
+            if family_en != '':
                 q &= Q(family__family_en__icontains=family_en)
-            if family_ko is not '':
+            if family_ko != '':
                 q &= Q(family__family_ko__icontains=family_ko)
-            if genus_en is not '':
+            if genus_en != '':
                 q &= Q(genus__genus_en__icontains=genus_en)
-            if genus_ko is not '':
+            if genus_ko != '':
                 q &= Q(genus__genus_ko__icontains=genus_ko)
-            if used_scientific_name is not '':
+            if used_scientific_name != '':
                 q &= Q(used_scientific_name__icontains=used_scientific_name)
-            if plant_name is not '':
+            if plant_name != '':
                 q &= Q(plant_name__icontains=plant_name)
-            q &= Q(user=request.user)
             seeds = Seed.objects.filter(q)
             return render(request, 'result.html', {'seed_list':seeds,})
     else:

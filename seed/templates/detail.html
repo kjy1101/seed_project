@@ -43,6 +43,10 @@
               <th scope="row">비고</th>
               <td>{{seed.note}}</td>
             </tr>
+            <tr>
+              <th scope="row">생성자</th>
+              <td>{{seed.user.name}}</td>
+            </tr>
           </tbody>
         </table>
 
@@ -50,7 +54,7 @@
           <button type="button" class="btn btn-outline-primary" onclick="location.href='edit/{{seed.id}}'">수정</button>
           <button type="button" class="btn btn-outline-danger" onclick="location.href='delete/{{seed.id}}'">삭제</button>
         </div>
-        
+
       </div>
 
 
@@ -58,7 +62,7 @@
 
         {% for img in seed.images.all %}
         
-        <div class="card text-white col-4" onclick="location.href='../../media/{{img.image}}'" style="border:0;margin-bottom: 10px;cursor:pointer;">
+        <div class="card text-white col-4" onclick="location.href='../../media/{{img.image}}'" style="border:0;margin-bottom: 20px;cursor:pointer;">
           <img src="../../media/{{img.image}}" class="card-img" alt="{{img.image}}">
           <div class="card-img-overlay">
             <h6 class="card-title">{{img.image}}</h6>
@@ -69,71 +73,5 @@
         
       </div>
     </div>
-
-    <!-- <div style="float:left;width:20%;">
-      <table class="table table-striped" style="display:flex;">
-        <tbody>
-          <tr>
-            <th scope="row">도입번호</th>
-            <td>{{seed.intro_num}}</td>
-          </tr>
-          <tr>
-            <th scope="row">과명</th>
-            <td>{{seed.family}}</td>
-          </tr>
-          <tr>
-            <th scope="row">속명</th>
-            <td>{{seed.genus}}</td>
-          </tr>
-          <tr>
-            <th scope="row">도입학명</th>
-            <td>{{seed.used_scientific_name}}</td>
-          </tr>
-          <tr>
-            <th scope="row">국명</th>
-            <td>{{seed.plant_name}}</td>
-          </tr>
-          <tr>
-            <th scope="row">현미경</th>
-            <td>{{seed.microscope}}</td>
-          </tr>
-          <tr>
-            <th scope="row">종자길이(mm)</th>
-            <td>{{seed.seed_length}}±{{seed.seed_length_error}}</td>
-          </tr>
-          <tr>
-            <th scope="row">종자너비(mm)</th>
-            <td>{{seed.seed_width}}±{{seed.seed_width_error}}</td>
-          </tr>
-          <tr>
-            <th scope="row">비고</th>
-            <td>{{seed.note}}</td>
-          </tr>
-        </tbody>
-      </table>
-      
-    </div>
-
-    <div style="float:right;width:80%;">
-      <div style="display: flex;flex-wrap: wrap;justify-content: space-around;align-content: space-around;">
-
-        {% for img in seed.images.all %}
-        
-        <div class="card bg-dark text-white" style="width:30%;height:45%;margin-bottom: 20px;">
-          <img src="../../media/{{img.image}}" class="card-img" alt="{{img.image}}">
-          <div class="card-img-overlay">
-            <h6 class="card-title">{{img.image}}</h6>
-          </div>
-        </div>
-
-        {% endfor %}
-        
-      </div>
-    </div>
-
-    <div style="text-align:center;">
-      <button type="button" class="btn btn-outline-primary" onclick="location.href='edit/{{seed.id}}'">수정</button>
-      <button type="button" class="btn btn-outline-danger" onclick="location.href='delete/{{seed.id}}'">삭제</button>
-    </div> -->
 
 {% endblock content %}
