@@ -16,12 +16,11 @@
                 <th scope="col">종자길이(mm)</th>
                 <th scope="col">종자너비(mm)</th>
                 <th scope="col">비고</th>
-                <th scope="col">상세보기</th>
                 </tr>
             </thead>
             <tbody>
                 {% for s in seed_list %}
-                    <tr>
+                    <tr onclick="location.href='../seed/detail/{{s.id}}'" style="cursor:pointer;">
                         <td>{{s.intro_num}}</td>
                         <td>{{s.family}}</td>
                         <td>{{s.genus}}</td>
@@ -31,7 +30,6 @@
                         <td>{{s.seed_length}}±{{s.seed_length_error}}</td>
                         <td>{{s.seed_width}}±{{s.seed_width_error}}</td>
                         <td>{{s.note}}</td>
-                        <td><a href="seed/detail/{{s.id}}">상세</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
