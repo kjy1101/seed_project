@@ -40,11 +40,22 @@ def edit(request, pk):
             seed = form.save(commit=False)
             seed.save()
 
+            # 기존 이미지 수정
+            for s in seed.images.all():
+                origin_image_str = "origin_image" + str(s.id)
+                origin_image = form.data.get(origin_image_str)
+                if origin_image == None:
+                    print("삭제됨")
+                    deleted_image = SeedImage.objects.get(pk=s.id)
+                    deleted_image.delete()
+                else:
+                    print("그대로 유지")
+
             # 이미지 추가
             image_set = request.FILES
             for image_data in image_set.getlist('image'):
                 SeedImage.objects.create(seed=seed, image=image_data)
-                
+
             return redirect('detail', pk=seed.pk)
         else:
             print("form is invalid")
