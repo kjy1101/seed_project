@@ -33,9 +33,15 @@ def new(request):
 def detail(request, pk):
     if request.user.is_authenticated:
         seed = get_object_or_404(Seed, pk=pk)
+<<<<<<< HEAD
         return render(request, 'detail.html', {'seed':seed})
     else:
         return redirect('home') # 로그인 안했으면 홈으로
+=======
+        print(seed.grain)
+        return render(request, 'detail.html', {'seed': seed})
+
+>>>>>>> 5371bcae8f1bb48424cbb4b879f260ceca593ec6
 
 def edit(request, pk):
     if request.user.is_authenticated:
