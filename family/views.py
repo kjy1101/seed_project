@@ -23,14 +23,15 @@ def new(request):
     return render(request, 'new_f.html', {'form':form})
 
 def detail(request, pk):
-    family = get_object_or_404(Family, pk=pk)
-    return render(request, 'detail_f.html', {'family':family})
+    if request.user.is_authenticated:
+        family = get_object_or_404(Family, pk=pk)
+        return render(request, 'detail_f.html', {'family':family})
 
 def edit(request, pk):
     family = get_object_or_404(Family, pk=pk)
     if request.method == "POST":
         form = FamilyForm(request.POST, instance=family)
-        if form.is_valid():
+        if form.is_valid() and family.user == request.user:
             family = form.save(commit=False)
             family.save()
             return redirect('detail_f', pk=family.pk)
@@ -44,5 +45,6 @@ def edit(request, pk):
 
 def delete(request, pk):
     family = get_object_or_404(Family, pk=pk)
-    family.delete()
-    return redirect('home')
+    if family.user == request.user:
+        family.delete()
+        return redirect('home')

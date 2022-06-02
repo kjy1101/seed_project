@@ -9,6 +9,7 @@ def new(request):
             form = GenusForm(request.POST, request.FILES)
             if form.is_valid():
                 genus = form.save(commit=False)
+                genus.user = request.user
                 genus.save()
                 return redirect('home') # genus 생성 후 home 페이지로 리다이렉트
             else:
@@ -22,14 +23,15 @@ def new(request):
     return render(request, 'new_g.html', {'form':form})
 
 def detail(request, pk):
-    genus = get_object_or_404(Genus, pk=pk)
-    return render(request, 'detail_g.html', {'genus':genus})
+    if request.user.is_authenticated:
+        genus = get_object_or_404(Genus, pk=pk)
+        return render(request, 'detail_g.html', {'genus':genus})
 
 def edit(request, pk):
     genus = get_object_or_404(Genus, pk=pk)
     if request.method == "POST":
         form = GenusForm(request.POST, instance=genus)
-        if form.is_valid():
+        if form.is_valid() and genus.user==request.user:
             genus = form.save(commit=False)
             genus.save()
             return redirect('detail_g', pk=genus.pk)
@@ -43,5 +45,6 @@ def edit(request, pk):
 
 def delete(request, pk):
     genus = get_object_or_404(Genus, pk=pk)
-    genus.delete()
-    return redirect('home')
+    if genus.user == request.user:
+        genus.delete()
+        return redirect('home')
