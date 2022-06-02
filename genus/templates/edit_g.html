@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit - Genus</title>
-</head>
-<body>
-    <h1>Edit - Genus</h1>
-    <form action="" method="POST">
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 style="text-align:center; margin: 20px auto;"><b>{{genus.genus_ko}}({{genus.genus_en}})</b> 수정</h1>
+    <form action="" method="POST" style="width:60%; margin: 0 auto;">
         {% csrf_token %}
-        {{form.as_table}}
-        <input type="submit" value="수정">
+        <div class="form-floating mb-3">
+            {{form.genus_ko}}
+            <label for="floatingInput">한글 이름</label>
+        </div>
+        <div class="form-floating mb-3">
+            {{form.genus_en}}
+            <label for="floatingInput">영문 이름</label>
+        </div>
+        <input type="submit" value="수정" style="float:right;" class="btn btn-primary">
     </form>
-</body>
-</html>
+
+{% endblock content %}

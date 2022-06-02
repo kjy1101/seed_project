@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail - Family</title>
-</head>
-<body>
-    <h1>Detail - Family</h1>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 style="text-align:center; margin: 20px auto;"><b>{{family.family_ko}}({{family.family_en}})</b> 상세</h1>
     {{family.family_ko}}
     {{family.family_en}}
     <a href="edit/{{family.id}}">수정</a>
     <a href="delete/{{family.id}}">삭제</a>
-</body>
-</html>
+
+{% endblock content %}
