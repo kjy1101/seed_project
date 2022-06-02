@@ -27,8 +27,8 @@ class Seed(models.Model):
     seed_width = models.FloatField(null=True, blank=True, help_text="종자너비(mm)")
     seed_width_error = models.FloatField(null=True, blank=True, help_text="종자너비오차")
     note = models.TextField(null=True, blank=True, help_text="비고")
-    user = models.ForeignKey("main.User", related_name="user", on_delete=models.CASCADE)
-    grain = models.CharField(max_length=2, choices=GRAIN_CHOICES)
+    user = models.ForeignKey("main.User", related_name="user", on_delete=models.CASCADE, null=True, blank=True)
+    grain = models.CharField(max_length=2, choices=GRAIN_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return self.plant_name

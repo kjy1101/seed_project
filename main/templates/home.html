@@ -16,6 +16,7 @@
                 <th scope="col">종자길이(mm)</th>
                 <th scope="col">종자너비(mm)</th>
                 <th scope="col">비고</th>
+                <th scope="col">생성자</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +32,7 @@
                         <td>{{s.seed_length}}±{{s.seed_length_error}}</td>
                         <td>{{s.seed_width}}±{{s.seed_width_error}}</td>
                         <td>{{s.note}}</td>
+                        <td>{{s.user.name}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -46,6 +48,7 @@
                     <tr>
                     <th scope="col">과명</th>
                     <th scope="col">과국명</th>
+                    <th scope="col">셍성자</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +56,7 @@
                         <tr onclick="location.href='../family/detail/{{f.id}}'" style="cursor:pointer;">
                             <td>{{f.family_en}}</td>
                             <td>{{f.family_ko}}</td>
+                            <td>{{f.user.name}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -65,6 +69,7 @@
                     <tr>
                     <th scope="col">속명</th>
                     <th scope="col">속국명</th>
+                    <th scope="col">셍성자</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +77,7 @@
                         <tr onclick="location.href='../genus/detail/{{g.id}}'" style="cursor:pointer;">
                             <td>{{g.genus_en}}</td>
                             <td>{{g.genus_ko}}</td>
+                            <td>{{g.user.name}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
