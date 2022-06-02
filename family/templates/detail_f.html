@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1 style="text-align:center; margin: 20px auto;"><b>{{family.family_ko}}({{family.family_en}})</b> 상세</h1>
-    {{family.family_ko}}
-    {{family.family_en}}
-    <a href="edit/{{family.id}}">수정</a>
-    <a href="delete/{{family.id}}">삭제</a>
+    {% csrf_token %}
+    <h1 style="text-align:center; margin-top: 20px ">과명 상세</h1>
+    <div style="width:60%; margin: 0 auto;">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">한글 이름</span>
+            <input class="form-control" type="text" value={{family.family_ko}} readonly>
+
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">영문 이름</span>
+            <input class="form-control" type="text" value={{family.family_en}} readonly>
+
+        </div>
+        <div class="btn-group" role="group" >
+          <a href="edit/{{family.id}}" class="btn btn-outline-primary">수정</a>
+          <a href="delete/{{family.id}}" class="btn btn-outline-primary">삭제</a>
+        </div>
+
+    </div>
+
 
 {% endblock content %}
