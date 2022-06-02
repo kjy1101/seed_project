@@ -55,7 +55,7 @@ def login(request):
 def logout(request):
     print(request.user)
     auth.logout(request)
-    return redirect('login')
+    return redirect('home')
 
 def search(request):
     if request.method == 'POST':
