@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'seed',
     'family',
     'genus',
+    'api',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
