@@ -27,4 +27,5 @@ urlpatterns = [
     path('seed/', include('seed.urls')),
     path('family/', include('family.urls')),
     path('genus/', include('genus.urls')),
+    path('api/', include('api.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

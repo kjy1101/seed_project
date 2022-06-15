@@ -1,4 +1,3 @@
-import jwt
 from django.contrib import auth
 from django.contrib.auth import get_user_model, authenticate
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet

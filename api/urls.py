@@ -1,5 +1,4 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 
 from api.views import save_family_genus_info, save_seed_info, save_images
 from api.views import SeedViewSet, FamilyViewSet, GenusViewSet
