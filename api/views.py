@@ -234,39 +234,28 @@ class SeedFilter(FilterSet):
         return filtered_queryset
 
 
+"""
+종자생성 (form)
+[POST] http://127.0.0.1:8000/api/seeds/
+intro_num : 2020-001492
+family : 1
+genus : 3
+used_scientific_name : Aster maackii Regel
+plant_name : 좀개미취
+microscope : True(False)
+seed_length : 2.71
+seed_length_error : 0.05
+seed_width : 1.01
+seed_width_error : 0.02
+note : 1차
+grain : sg(dg)
+image : 파일첨부
+"""
 class SeedViewSet(ModelViewSet):
     serializer_class = SeedSerializer
     queryset = Seed.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_class = SeedFilter
-
-    # def perform_create(self, serializer):  # 생성
-    #     data = self.request.data
-    #     # instance, check = Seed.objects.get_or_create(
-    #     instance = serializer.save(
-    #         intro_num=data.get('intro_num'),
-    #         family_id=data.get('family'),
-    #         genus_id=data.get('genus'),
-    #         used_scientific_name=data.get('used_scientific_name'),
-    #         plant_name=data.get('plant_name'),
-    #         microscope=data.get('microscope'),
-    #         seed_length=data.get('seed_length'),
-    #         seed_width=data.get('seed_width'),
-    #         seed_width_error=data.get('seed_width_error'),
-    #         seed_length_error=data.get('seed_length_error'),
-    #         note=data.get('note')
-    #     )
-    #     print("views에서 생성")
-    #     image_set = self.request.FILES
-    #     # print(image_set)
-    #     # print(serializer)
-    #     # print(serializer.validated_data.get('id'))
-    #     # print(id.id)
-    #     # print("instance:", instance)
-    #     for image_data in image_set.getlist('image'):
-    #         SeedImage.objects.create(seed=instance, image=image_data)
-    #         # print(image_data)
-    #     return super().perform_create(serializer)
 
     # def post(self, request, pk):  # 수정
     #     data = self.request.data
@@ -310,11 +299,26 @@ class SeedViewSet(ModelViewSet):
     #     return redirect(redirect_url)
 
 
+"""
+과명생성
+[POST] http://127.0.0.1:8000/api/family/
+{
+    "family_en" : "Compositae",
+    "family_ko" : "국화과"
+}
+"""
 class FamilyViewSet(ModelViewSet):
     serializer_class = FamilySerializer
     queryset = Family.objects.all()
 
-
+"""
+속명생성
+[POST] http://127.0.0.1:8000/api/genus/
+{
+    "genus_en" : "Aster",
+    "genus_ko" : "참취속"
+}
+"""
 class GenusViewSet(ModelViewSet):
     serializer_class = GenusSerializer
     queryset = Genus.objects.all()
