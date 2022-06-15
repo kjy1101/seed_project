@@ -20,9 +20,15 @@
         </tbody>
     </table>
 
-    <div style="text-align:center;">
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='edit/{{genus.id}}'">수정</button>
-        <button type="button" class="btn btn-outline-danger" onclick="location.href='delete/{{genus.id}}'">삭제</button>
-    </div>
+    {% if user == genus.user %}
+        <div style="text-align:center;">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='edit/{{genus.id}}'">수정</button>
+            <button type="button" class="btn btn-outline-danger" onclick="location.href='delete/{{genus.id}}'">삭제</button>
+        </div>
+    {% else %}
+        <div style="text-align:center">
+        본인이 생성한 정보만 편집할 수 있습니다.
+        </div>
+    {% endif %}
 
 {% endblock content %}

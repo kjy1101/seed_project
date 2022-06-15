@@ -27,7 +27,16 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/genus/new" style="color:white">속명생성</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/search" style="color:white">검색</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
           {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="/" style="color:white;cursor:default;">[{{user.name}}({{user.login_id}})님 접속 중]</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/logout" style="color:white">로그아웃</a>
           </li>
@@ -39,9 +48,6 @@
             <a class="nav-link active" aria-current="page" href="login" style="color:white">로그인</a>
           </li>
           {% endif %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/search" style="color:white">검색</a>
-          </li>
         </ul>
       </div>
     </div>

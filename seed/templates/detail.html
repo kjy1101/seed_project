@@ -50,26 +50,36 @@
           </tbody>
         </table>
 
-        <div style="text-align:center;">
-          <button type="button" class="btn btn-outline-primary" onclick="location.href='edit/{{seed.id}}'">수정</button>
-          <button type="button" class="btn btn-outline-danger" onclick="location.href='delete/{{seed.id}}'">삭제</button>
-        </div>
+        {% if user == seed.user %}
+          <div style="text-align:center;">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='edit/{{seed.id}}'">수정</button>
+            <button type="button" class="btn btn-outline-danger" onclick="location.href='delete/{{seed.id}}'">삭제</button>
+          </div>
+        {% else %}
+          <div style="text-align:center">
+            본인이 생성한 정보만 편집할 수 있습니다.
+          </div>
+        {% endif %}
 
       </div>
 
 
       <div class="row" style="float:right;width:80%;padding:5px;">
 
-        {% for img in seed.images.all %}
-        
-        <div class="card text-white col-4" onclick="location.href='../../media/{{img.image}}'" style="border:0;margin-bottom: 20px;cursor:pointer;">
-          <img src="../../media/{{img.image}}" class="card-img" alt="{{img.image}}">
-          <div class="card-img-overlay">
-            <h6 class="card-title">{{img.image}}</h6>
+        {% if seed.images.all.first == None %}
+          이미지없음
+        {% else %}
+          {% for img in seed.images.all %}
+          
+          <div class="card text-white col-4" onclick="location.href='../../media/{{img.image}}'" style="border:0;margin-bottom: 20px;cursor:pointer;">
+            <img src="../../media/{{img.image}}" class="card-img" alt="{{img.image}}">
+            <div class="card-img-overlay">
+              <h6 class="card-title">{{img.image}}</h6>
+            </div>
           </div>
-        </div>
 
-        {% endfor %}
+          {% endfor %}
+        {% endif %}
         
       </div>
     </div>
