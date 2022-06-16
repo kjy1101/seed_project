@@ -38,4 +38,4 @@ class SeedImage(models.Model):
     image = models.ImageField(upload_to=image_upload_path, null=True, blank=True, help_text="이미지")
 
     def __str__(self):
-        return "aaa"
+        return self.image.name

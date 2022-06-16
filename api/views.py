@@ -1,24 +1,16 @@
-from django.contrib import auth
-from django.contrib.auth import get_user_model, authenticate
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from django_filters.rest_framework import filters
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from io import BytesIO
 from django.http import HttpResponse
 import csv, os
 from rest_framework.viewsets import ModelViewSet
-
-from seed_project.settings import SECRET_KEY
 from seed.models import Seed, SeedImage
 from family.models import Family
 from genus.models import Genus
 from PIL import Image
 from django.core.files.base import ContentFile
-from .serializer import SeedSerializer, FamilySerializer, GenusSerializer, SeedImageSerializer
-from django.shortcuts import redirect, render
+from .serializer import SeedSerializer, FamilySerializer, GenusSerializer
 
 
 # 파일 : seed_info.csv
@@ -262,6 +254,10 @@ class SeedViewSet(ModelViewSet):
     queryset = Seed.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_class = SeedFilter
+
+    # def perform_create(self, serializer):
+    #     print(self.request.user)
+    #     serializer.save(user=self.request.user)
 
 """
 과명생성
