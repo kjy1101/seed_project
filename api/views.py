@@ -250,54 +250,18 @@ seed_width_error : 0.02
 note : 1차
 grain : sg(dg)
 image : 파일첨부
+
+종자수정 (form)
+[PUT] http://127.0.0.1:8000/api/seeds/<id>/
+delete_image : 1,2,3 (삭제할 이미지 아이디들)
+image : 파일첨부 (새로 추가할 이미지들)
+나머지는 생성과 동일
 """
 class SeedViewSet(ModelViewSet):
     serializer_class = SeedSerializer
     queryset = Seed.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_class = SeedFilter
-
-    # def post(self, request, pk):  # 수정
-    #     data = self.request.data
-    #     print("수정된 데이터: ", data)
-    #     seed = Seed.objects.get(pk=pk)
-    #     seed.intro_num = data.get('intro_num')
-    #     seed.family_id = data.get('family')
-    #     seed.genus_id = data.get('genus')
-    #     seed.used_scientific_name = data.get('used_scientific_name')
-    #     seed.plant_name = data.get('plant_name')
-    #     seed.microscope = data.get('microscope')
-    #     seed.seed_length = data.get('seed_length')
-    #     seed.seed_width = data.get('seed_width')
-    #     seed.seed_width_error = data.get('seed_width_error')
-    #     seed.seed_length_error = data.get('seed_length_error')
-    #     seed.note = data.get('note')
-    #     seed.save()
-    #
-    #     # 기존 이미지 수정
-    #     for s in seed.images.all():
-    #         # print(s)
-    #         # print(s.id)
-    #         origin_image_str = "origin_image" + str(s.id)
-    #         origin_image = data.get(origin_image_str)
-    #         print("origin image: ", origin_image)
-    #         if origin_image == None:
-    #             print("삭제됨")
-    #             deleted_image = SeedImage.objects.get(pk=s.id)
-    #             deleted_image.delete()
-    #         else:
-    #             print("그대로 유지")
-    #
-    #     # 새 이미지 추가
-    #     image_set = self.request.FILES
-    #     # print(image_set)
-    #     for image_data in image_set.getlist('image'):
-    #         SeedImage.objects.create(seed=seed, image=image_data)
-    #         print(image_data)
-    #
-    #     redirect_url = 'http://localhost:8000/app/seeds/' + str(seed.id)
-    #     return redirect(redirect_url)
-
 
 """
 과명생성

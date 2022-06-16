@@ -1,3 +1,4 @@
+from urllib import request
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from rest_framework import serializers
@@ -25,8 +26,6 @@ class GenusSerializer(serializers.ModelSerializer):
 
 
 class SeedSerializer(serializers.ModelSerializer):
-    # images = SeedImageSerializer(many=True, read_only=True)
-
     class Meta:
         model = Seed
         fields = ['url', 'id', 'intro_num', 'family', 'genus', 'used_scientific_name', 'plant_name', 'microscope', 'grain',
@@ -59,7 +58,6 @@ class SeedSerializer(serializers.ModelSerializer):
         return super(SeedSerializer, self).to_representation(instance)
 
     def update(self, instance, validated_data):
-        print("update")
 
         instance.intro_num=validated_data.get('intro_num')
         instance.family_id=validated_data.get('family').id
@@ -73,6 +71,26 @@ class SeedSerializer(serializers.ModelSerializer):
         instance.seed_length_error=validated_data.get('seed_length_error')
         instance.note=validated_data.get('note')
         instance.grain=validated_data.get('grain')
+
+        delete_images = self.context['request'].data.get('delete_image').split(',')
+        print(delete_images)
+
+        # 기존 이미지 수정
+        for s in instance.images.all():
+            print(s.id)
+            if str(s.id) in delete_images:
+                print("삭제")
+                delete_image = SeedImage.objects.get(pk=s.id)
+                delete_image.delete()
+            else:
+                print("유지")
+    
+        # 새 이미지 추가
+        image_set = self.context['request'].FILES
+        print(image_set)
+        for image_data in image_set.getlist('image'):
+            SeedImage.objects.create(seed=instance, image=image_data)
+            print(image_data)
         
         instance.save()
 
