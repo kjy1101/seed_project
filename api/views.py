@@ -269,6 +269,8 @@ class SeedViewSet(ModelViewSet):
 }
 """
 class FamilyViewSet(ModelViewSet):
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = FamilySerializer
     queryset = Family.objects.all()
 
@@ -285,6 +287,8 @@ class FamilyViewSet(ModelViewSet):
 }
 """
 class GenusViewSet(ModelViewSet):
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = GenusSerializer
     queryset = Genus.objects.all()
 
