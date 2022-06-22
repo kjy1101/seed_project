@@ -14,10 +14,18 @@ class FamilySerializer(serializers.ModelSerializer):
         model = Family
         fields = ['url', 'id', 'family_en', 'family_ko']
 
+    def to_representation(self, instance):
+        self.fields['user'] = UserSerializer()
+        return super(FamilySerializer, self).to_representation(instance)
+
 class GenusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genus
         fields = ['url', 'id', 'genus_en', 'genus_ko']
+
+    def to_representation(self, instance):
+        self.fields['user'] = UserSerializer()
+        return super(GenusSerializer, self).to_representation(instance)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

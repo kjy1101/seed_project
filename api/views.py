@@ -272,6 +272,10 @@ class FamilyViewSet(ModelViewSet):
     serializer_class = FamilySerializer
     queryset = Family.objects.all()
 
+    def perform_create(self, serializer):
+        print(self.request.user)
+        serializer.save(user=self.request.user)
+
 """
 속명생성
 [POST] http://127.0.0.1:8000/api/genus/
@@ -283,3 +287,7 @@ class FamilyViewSet(ModelViewSet):
 class GenusViewSet(ModelViewSet):
     serializer_class = GenusSerializer
     queryset = Genus.objects.all()
+
+    def perform_create(self, serializer):
+        print(self.request.user)
+        serializer.save(user=self.request.user)
