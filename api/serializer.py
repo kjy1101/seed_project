@@ -2,35 +2,37 @@ from rest_framework import serializers
 from seed.models import Seed, SeedImage
 from family.models import Family
 from genus.models import Genus
-
+from main.models import User
 
 class SeedImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = SeedImage
         fields = ['image']
 
-
 class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = Family
         fields = ['url', 'id', 'family_en', 'family_ko']
-
 
 class GenusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genus
         fields = ['url', 'id', 'genus_en', 'genus_ko']
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['name', 'login_id']
 
 class SeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seed
         fields = ['url', 'id', 'intro_num', 'family', 'genus', 'used_scientific_name', 'plant_name', 'microscope', 'grain',
-                  'seed_length', 'seed_length_error', 'seed_width', 'seed_width_error', 'user', 'note', 'images']
-
+                  'seed_length', 'seed_length_error', 'seed_width', 'seed_width_error', 'note', 'images']
+        
     def create(self, validated_data):
         # print(validated_data)
-        # print(self.context['request'].user.id)
+        # print(self.context['request'].user)
         instance, check = Seed.objects.get_or_create(
             intro_num=validated_data.get('intro_num'),
             family_id=validated_data.get('family').id,
@@ -44,17 +46,19 @@ class SeedSerializer(serializers.ModelSerializer):
             seed_length_error=validated_data.get('seed_length_error'),
             note=validated_data.get('note'),
             grain=validated_data.get('grain'),
-            # user=self.context['request'].user
+            user=self.context['request'].user
         )
         image_set = self.context['request'].FILES
         for image_data in image_set.getlist('image'):
             SeedImage.objects.create(seed=instance, image=image_data)
         return instance
 
+
     def to_representation(self, instance):
         self.fields['family'] = FamilySerializer()
         self.fields['genus'] = GenusSerializer()
         self.fields['images'] = SeedImageSerializer(many=True)
+        self.fields['user'] = UserSerializer()
         return super(SeedSerializer, self).to_representation(instance)
 
     def update(self, instance, validated_data):

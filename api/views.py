@@ -11,7 +11,9 @@ from genus.models import Genus
 from PIL import Image
 from django.core.files.base import ContentFile
 from .serializer import SeedSerializer, FamilySerializer, GenusSerializer
-
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 
 # 파일 : seed_info.csv
 # row[0] : 도입번호
@@ -250,14 +252,13 @@ image : 파일첨부 (새로 추가할 이미지들)
 나머지는 생성과 동일
 """
 class SeedViewSet(ModelViewSet):
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = SeedSerializer
     queryset = Seed.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_class = SeedFilter
 
-    # def perform_create(self, serializer):
-    #     print(self.request.user)
-    #     serializer.save(user=self.request.user)
 
 """
 과명생성
